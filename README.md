@@ -1,7 +1,7 @@
 ## Instawork Full-stack take-home assignment
 
 ### Django Member Application
-
+    Time Taken to build ~ 7.5 hours
     Submitted by Adit Mehta
     
 ## Screenshots
