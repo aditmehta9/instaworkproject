@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+
+
+    {% block extra_css %}
+        <style>
+
+
+            /* Google font */
+            @import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+
+            #clock {
+            {#background-color: #0A246A;#} position: absolute;
+
+                font-family: 'Orbitron', sans-serif;
+                color: #66ff99;
+                font-size: 25px;
+                text-align: center;
+                padding-top: 4px;
+                padding-bottom: 4px;
+                position: center;
+                left: 0px;
+                top: 0px;
+                z-index: -1;
+            }
+        </style>
+    {% endblock %}
+
+
+    <!-- BEGIN BASE-->
+
+        <div class="offcanvas">
+        </div>
+        {% block maincontent %}
+
+        {% endblock maincontent %}
+
+
+    {% block extra_js %}
+
+        <script>
+
+            function startTime() {
+                var today = new Date().toLocaleString('en-GB', {timeZone: 'Europe/London'});
+
+                document.getElementById('txt').innerHTML = today;
+                var t = setTimeout(startTime, 500);
+            }
+
+
+        </script>
+
+    {% endblock %}
+
+
+{% endblock %}

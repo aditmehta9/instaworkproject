@@ -1,0 +1,59 @@
+{% extends "home.html" %}
+
+{% block maincontent %}
+<div id="content">
+    <section>
+        <div class="section-header">
+
+        </div>
+        <div class="section-body">
+            <div class="card">
+                <div class="card-body">
+
+                    <form class="form" action="{% if object %}
+                        {% url 'teams:update_member' object.id %}
+                        <h2>Edit Account</h2>
+                        {% else %}{% url 'teams:add_member' %}
+                        {% endif %}" method="POST">{% csrf_token %}
+                        <h2>Add a team member</h2>
+                        <h4 style="color:grey">Set email, location and role.</h4>
+                         <h3>Info:</h3>
+                        {% for field in form %}
+                        {{ field }}
+                        <br>
+                        {{ field.errors }}
+                        <br>
+                        {% endfor %}
+                        <div class="form-group">
+                            <input type="submit" id="submit" class="btn btn-info" value="Save">
+                            <a href="{% url 'teams:list_teams' %}" class="btn btn-light border border-danger rounded-top rounded-lg text-danger" align="left" >Delete</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+{% block extra_js %}
+
+
+
+<script>
+    $(document).ready(function () {
+        $('[name="account_type"]').select2(
+            { dropdownAutoWidth: true }
+        );
+    });
+
+
+
+
+</script>
+{% endblock %}
+
+{% endblock maincontent %}

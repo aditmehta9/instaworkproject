@@ -1,0 +1,62 @@
+{% extends "home.html" %} {% block maincontent %}
+    <div id="content">
+        <section>
+            <div class="section-header">
+
+
+            </div>
+
+            <div class="card" >
+                <div class="card-body">
+                    <h2 class="card-title">Team Members</h2>
+                    <p class="card-text">You have {{ teams|length }} member(s).</p>
+                </div>
+            </div>
+
+
+                <div class="card">
+                    <br/>
+                    <a class="btn ink-reaction pull-right " href="{% url 'teams:add_member' %}" style="margin-right: 20px;">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                    <br/>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <main data-role="content">
+
+
+                                <ul class="list-group list-group-flush" data-role="listview" data-inset="true">
+                                {% for member in teams %}
+
+                                    <li class="list-group-item" >
+                                        <a href="{% url 'teams:update_member' member.pk %}">
+                                        {{ member.first_name }} {{ member.last_name }}
+                                        {% if member.role == 'admin' %}
+                                            (admin)
+                                        {% endif %}
+                                        <br>
+                                        {{ member.phone }}
+                                        <br>
+                                        {{ member.email  }}
+                                        </a>
+                                    </li>
+                                    <br>
+                                {% empty %}
+                                </ul>
+
+
+                                <div class="alert alert-warning text-center">No Members</div>
+
+                                {% endfor %}
+
+                        </main>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+
+{% endblock maincontent %}
